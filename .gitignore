@@ -62,3 +62,10 @@ build/
 
 # Crashlytics / Firebase
 **/android/app/crashlytics/build.json
+
+# Project-specific
+node_modules
+dist
+.env
+coverage
+server/tmp
