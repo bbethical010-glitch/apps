@@ -108,6 +108,8 @@ cloudflared tunnel --url http://localhost:8787
 
 For a persistent named tunnel, create it in Cloudflare Zero Trust and map your DNS hostname to that tunnel.
 
+For a full quick-tunnel and named-tunnel walkthrough, see [CLOUDFLARE_SETUP.md](/Users/prathampandey/Desktop/data/CLOUDFLARE_SETUP.md).
+
 ## Verification
 
 Run the backend tests:

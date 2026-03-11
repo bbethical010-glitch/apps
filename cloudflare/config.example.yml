@@ -1,0 +1,7 @@
+tunnel: your-tunnel-uuid
+credentials-file: /Users/prathampandey/.cloudflared/your-tunnel-uuid.json
+
+ingress:
+  - hostname: ssd-api.yourdomain.com
+    service: http://localhost:8787
+  - service: http_status:404
