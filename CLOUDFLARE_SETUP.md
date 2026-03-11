@@ -37,10 +37,22 @@ cd /Users/prathampandey/Desktop/data
 
 Cloudflare will print a temporary URL ending in `trycloudflare.com`.
 
+Important:
+
+- This script intentionally ignores `~/.cloudflared/config.yml`.
+- If you have an old named-tunnel config there, it can hijack quick tunnels and send every request to a fallback `404`.
+
 Use that URL in local or production frontend config:
 
 ```env
 VITE_API_BASE_URL=https://random-name.trycloudflare.com
+```
+
+Or let the repo parse the current tunnel URL and rebuild Pages automatically:
+
+```bash
+cd /Users/prathampandey/Desktop/data
+./scripts/deploy-pages-with-current-tunnel.sh
 ```
 
 Notes:

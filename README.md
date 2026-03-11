@@ -119,6 +119,12 @@ For a persistent named tunnel, create it in Cloudflare Zero Trust and map your D
 
 For a full quick-tunnel and named-tunnel walkthrough, see [CLOUDFLARE_SETUP.md](/Users/prathampandey/Desktop/data/CLOUDFLARE_SETUP.md).
 
+If you are using a quick tunnel, this repo can parse the current `trycloudflare.com` URL from `cloudflare/quick-tunnel.log` and rebuild the GitHub Pages deployment automatically:
+
+```bash
+./scripts/deploy-pages-with-current-tunnel.sh
+```
+
 ## Verification
 
 Run the backend tests:
