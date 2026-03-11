@@ -34,7 +34,7 @@ cp server/.env.example server/.env
 Set `STORAGE_ROOT` to your SSD folder, for example:
 
 ```env
-STORAGE_ROOT=/Volumes/MySSD/MyCloudStorage
+STORAGE_ROOT=/Volumes/My\ SSD/MyCloudStorage
 ```
 
 3. Configure the frontend:
@@ -50,6 +50,11 @@ VITE_API_BASE_URL=http://localhost:8787
 ```
 
 For production, point `VITE_API_BASE_URL` at your Cloudflare Tunnel hostname.
+For this repository, the GitHub Pages base path should be:
+
+```env
+VITE_APP_BASE_PATH=/apps/
+```
 
 4. Start the backend:
 
@@ -83,7 +88,7 @@ All paths are resolved relative to `STORAGE_ROOT` and sanitized to block travers
 
 ```env
 VITE_API_BASE_URL=https://your-tunnel-domain.example.com
-VITE_APP_BASE_PATH=/your-repository-name/
+VITE_APP_BASE_PATH=/apps/
 ```
 
 3. Deploy:
