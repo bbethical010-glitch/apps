@@ -27,6 +27,44 @@ export async function getStorageStatus(storageRoot) {
   }
 }
 
+export async function getStorageTelemetry(storageRoot) {
+  const status = await getStorageStatus(storageRoot);
+
+  if (!status.available) {
+    return {
+      ...status,
+      usage: null
+    };
+  }
+
+  try {
+    const filesystem = await fsp.statfs(storageRoot);
+    const blockSize = filesystem.bsize || 0;
+    const totalBytes = filesystem.blocks * blockSize;
+    const freeBytes = filesystem.bavail * blockSize;
+    const usedBytes = Math.max(totalBytes - freeBytes, 0);
+    const healthPercent = totalBytes > 0
+      ? Math.max(0, Math.min(100, Math.round((freeBytes / totalBytes) * 100)))
+      : null;
+
+    return {
+      ...status,
+      usage: {
+        totalBytes,
+        usedBytes,
+        freeBytes,
+        healthPercent
+      }
+    };
+  } catch (error) {
+    return {
+      ...status,
+      usage: null,
+      reason: status.reason || error.message
+    };
+  }
+}
+
 export async function ensureStorageRoot(storageRoot) {
   await fsp.mkdir(storageRoot, { recursive: true });
 }

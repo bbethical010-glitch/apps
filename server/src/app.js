@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import os from "node:os";
 import Busboy from "busboy";
 import cors from "cors";
 import express from "express";
@@ -7,6 +8,7 @@ import {
   deleteEntry,
   ensureStorageRoot,
   getStorageStatus,
+  getStorageTelemetry,
   listDirectory,
   resolveDownload,
   writeUploadedStream
@@ -52,13 +54,20 @@ export function createServer({ config }) {
   app.use(express.json());
 
   app.get("/api/status", async (req, res) => {
-    const storageStatus = await getStorageStatus(config.storageRoot);
+    const storageStatus = await getStorageTelemetry(config.storageRoot);
 
     res.json({
       ok: true,
       api: "online",
       storage: storageStatus.available ? "online" : "offline",
       storageRoot: config.storageRoot,
+      storageUsage: storageStatus.usage,
+      host: {
+        hostname: os.hostname(),
+        user: os.userInfo().username,
+        platform: os.platform(),
+        uptimeSeconds: os.uptime()
+      },
       pollIntervalMs: config.pollIntervalMs,
       checkedAt: new Date().toISOString(),
       message: storageStatus.reason

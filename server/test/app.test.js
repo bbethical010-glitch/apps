@@ -30,6 +30,8 @@ describe("SSD Cloud Storage API", () => {
 
     assert.equal(response.statusCode, 200);
     assert.equal(response.body.storage, "online");
+    assert.equal(typeof response.body.host.hostname, "string");
+    assert.equal(typeof response.body.host.user, "string");
   });
 
   it("lists files from the storage directory", async () => {
