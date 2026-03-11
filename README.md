@@ -91,7 +91,16 @@ VITE_API_BASE_URL=https://your-tunnel-domain.example.com
 VITE_APP_BASE_PATH=/apps/
 ```
 
-3. Deploy:
+3. If your GitHub Pages source is the repository `main` branch root, deploy the built frontend into the repo root and push:
+
+```bash
+npm run deploy:pages-root
+git add index.html assets .nojekyll
+git commit -m "Deploy frontend"
+git push
+```
+
+4. If your GitHub Pages source is configured to use the `gh-pages` branch, you can instead deploy with:
 
 ```bash
 cd client

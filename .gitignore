@@ -67,5 +67,6 @@ build/
 node_modules
 dist
 .env
+.env.production
 coverage
 server/tmp
