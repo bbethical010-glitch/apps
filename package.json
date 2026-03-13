@@ -12,5 +12,10 @@
     "build": "npm --prefix client run build",
     "test": "npm --prefix server run test",
     "deploy:pages-root": "npm --prefix client run build && rsync -a --delete client/dist/assets/ assets/ && cp client/dist/index.html index.html && touch .nojekyll"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.2.1",
+    "autoprefixer": "^10.4.27",
+    "postcss": "^8.5.8"
   }
 }

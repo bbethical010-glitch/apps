@@ -6,6 +6,8 @@ export default defineConfig(({ mode }) => {
 
   return {
     base: env.VITE_APP_BASE_PATH || "/",
-    plugins: [react()]
+    plugins: [
+      react(),
+    ]
   };
 });
